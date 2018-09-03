@@ -1,0 +1,85 @@
+<!--
+  Generated template for the Contacts page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+	<ion-navbar>
+		<ion-title>Contacts</ion-title>
+	</ion-navbar>
+
+	<ion-toolbar no-border-top> 
+		<ion-segment [(ngModel)]="contactsType"> 
+			<ion-segment-button value="active">Active</ion-segment-button> 
+			<ion-segment-button value="send">Sent</ion-segment-button> 
+			<ion-segment-button value="received">Received</ion-segment-button> 
+		</ion-segment> 
+		<ion-buttons end>
+			<button ion-button icon-only (click)="addContact()">
+				<ion-icon name="person-add"></ion-icon>
+			</button>
+		</ion-buttons>
+	</ion-toolbar> 
+
+</ion-header>
+
+<ion-content padding>
+	<div [ngSwitch]="contactsType"> 
+		<ion-list *ngSwitchCase="'active'"> 
+			<ion-item-sliding *ngFor="let contact of activeContacts">
+				<ion-item (click)="chatWithContact(contact)">
+					<ion-avatar item-left>
+						<img src="assets/images/avatar.png">
+					</ion-avatar>
+					<h2>{{ contact.login }}</h2>
+				</ion-item>
+				<ion-item-options side="right">
+					<button ion-button color="danger" (click)="deleteActiveContact(contact)">
+						<ion-icon name="trash"></ion-icon>
+						Delete
+					</button>
+				</ion-item-options>
+			</ion-item-sliding>
+		</ion-list>
+
+		<ion-list *ngSwitchCase="'send'">
+			<ion-item-sliding *ngFor="let contact of sendContacts">
+				<ion-item>
+					<ion-avatar item-left>
+						<img src="assets/images/avatar.png">
+					</ion-avatar>
+					<h2>{{ contact.login }}</h2>
+				</ion-item>
+				<ion-item-options side="right">
+					<button ion-button color="danger" (click)="deleteSendContact(contact)">
+						<ion-icon name="trash"></ion-icon>
+						Delete
+					</button>
+				</ion-item-options>
+			</ion-item-sliding>
+		</ion-list>
+
+		<ion-list *ngSwitchCase="'received'">
+			<ion-item-sliding *ngFor="let contact of receivedContacts">
+				<ion-item>
+					<ion-avatar item-left>
+						<img src="assets/images/avatar.png">
+					</ion-avatar>
+					<h2>{{ contact.login }}</h2>
+				</ion-item>
+				<ion-item-options side="right">
+					<button ion-button color="primary" (click)="confirmReceivedContact(contact)">
+						<ion-icon name="checkmark"></ion-icon>
+						accept
+					</button>
+					<button ion-button color="danger" (click)="deleteReceivedContact(contact)">
+						<ion-icon name="trash"></ion-icon>
+						Delete
+					</button>
+				</ion-item-options>
+			</ion-item-sliding>
+		</ion-list>
+	</div>
+</ion-content>

@@ -1,0 +1,4 @@
+#Sun Sep 02 11:53:04 IST 2018
+base.0=/home/ashish/my_projects/ionic/chat7/client/platforms/android/app/build/intermediates/transforms/dexMerger/debug/38
+renamed.0=classes.dex
+file.0=/home/ashish/my_projects/ionic/chat7/client/platforms/android/app/build/intermediates/transforms/dexMerger/debug/38/classes.dex
