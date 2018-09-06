@@ -14,6 +14,7 @@ import { HomePage } from '../pages/home/home';
 import { ContactsPage } from '../pages/contacts/contacts';
 import { ContactsAddPage } from '../pages/contacts-add/contacts-add';
 import { ContactsChatPage } from '../pages/contacts-chat/contacts-chat';
+import { MessagesService } from '../providers/messages-service';
 
 @NgModule({
 	declarations: [
@@ -30,7 +31,7 @@ import { ContactsChatPage } from '../pages/contacts-chat/contacts-chat';
 		IonicModule.forRoot(MyApp)
 	],
 	bootstrap: [
-		IonicApp
+		IonicApp,
 	],
 	entryComponents: [
 		MyApp,
@@ -47,7 +48,8 @@ import { ContactsChatPage } from '../pages/contacts-chat/contacts-chat';
 		ConfigurationService,
 		AuthenticationService,
 		ContactsService,
-		SocketioService
+		SocketioService,
+		MessagesService,
 	]
 })
 export class AppModule {}

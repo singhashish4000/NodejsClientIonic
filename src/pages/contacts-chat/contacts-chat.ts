@@ -3,6 +3,7 @@ import { NavController, NavParams } from 'ionic-angular';
 
 import { AuthenticationService } from '../../providers/authentication-service';
 import { SocketioService } from '../../providers/socketio-service';
+import { MessagesService } from '../../providers/messages-service';
 
 /*
   Generated class for the ContactsChat page.
@@ -18,26 +19,82 @@ export class ContactsChatPage {
 	private contact: any;
 	private message: string;
 	private messages: any[];
+	private tmp_messages: any[];
 
 	constructor(
 		public navCtrl: NavController,
 		public navParams: NavParams,
 		private authenticationService: AuthenticationService,
-		private socketioService: SocketioService
+		private socketioService: SocketioService,
+		private messageService: MessagesService
 	) {
 		this.contact = this.navParams.get('contact');
 
 		this.message = '';
 		this.messages = [];
+		//console.log(this.messages)
 
 		this.socketioService.getSocket().on('private-message', (data) => {
-			this.messages.push(data);
+			//console.log(data);
+		
+			console.log("Got Socket Messages");
+			 this.messages.push(data);
 		});
+
+		//
+
+	
+		console.log(this.messages);
+
+		// this.tmp_messages.push(db_messages)
+		
+		// for(let i=0; i<= this.tmp_messages.length; i++) {
+
+		// 	console.log("aa",db_messages["message"].data["result"][i]);
+		// 	this.messages.push(db_messages["message"].data["result"][i])			
+
+		// }
+
+
+	
+		// console.log("COUNT",this.messages.length);
+
+		// for(let i=0; i >= this.messages.length; i++) {
+
+		// 	console.log(this.messages[i]);
+		// 	this.tmp_messages.push(this.messages[i])			
+
+		// }
+
+		// this.messages.forEach(msg=>{
+		// 	debugger;
+		// 	console.log("aa",msg);
+		// 	this.tmp_messages.push(msg);
+		// })
+
+		// console.log("Aaa",this.messages);
+
 	}
 
-//  ionViewDidLoad() {
-//    console.log('ionViewDidLoad ContactsChatPage');
-//  }
+	getDbMessages() {
+		let db_messages = this.messageService.getListOfMessages(6, 5);
+		db_messages.forEach(db_message => {
+			//console.log(db_message);
+			if (db_message["message"].data !== undefined) {
+				let db = db_message["message"].data["result"]
+				db.forEach((element, index) => {
+					//console.log(element);
+					this.messages.push(element);
+				});
+		   }			
+		});	
+	}
+
+	ionViewDidLoad() {
+		console.log('ionViewDidLoad ContactsChatPage');
+		this.getDbMessages();
+		
+	}
 
 	public sendMessage(): void {
 		if (this.message !== '') {
