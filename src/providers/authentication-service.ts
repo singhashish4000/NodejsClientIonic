@@ -15,6 +15,7 @@ import { ConfigurationService } from './configuration-service';
 export class AuthenticationService {
 	private userToken: string;
 	private userLogin: string;
+	private userId: any;
 
 	constructor(
 		public http: Http,
@@ -29,6 +30,9 @@ export class AuthenticationService {
 	public getUserLogin(): string {
 		return this.userLogin;
 	}
+	public getUserId(): any {
+		return this.userId;
+	}
 	public login(email: string, password: string): Observable<Response> {
 		return this.http.post('https://node-server-for-ionic.herokuapp.com/api/user-login', JSON.stringify({
 			email: email,
@@ -40,8 +44,9 @@ export class AuthenticationService {
 			if (value.status === 0) {
 				this.userToken = value.data.token;
 				this.userLogin = value.data.login;
+				this.userId = value.data.id;
 			}
-
+            console.log(value);
 			return value;
 		});
 	}

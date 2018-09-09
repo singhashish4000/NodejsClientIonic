@@ -35,7 +35,7 @@ export class SocketioService {
 	public emitMessage(message: string): void {
 		this.socket.emit('message', { token: this.authenticationService.getUserToken(), text: message });
 	}
-	public emitPrivateMessage(userId: number, message: string): void {
-		this.socket.emit('private-message', { token: this.authenticationService.getUserToken(), text: message, destUserId: userId });
+	public emitPrivateMessage(userId: number, message: string, roomName: any): void {
+		this.socket.emit('private-message', { token: this.authenticationService.getUserToken(), text: message, destUserId: userId, roomName: roomName });
 	}
 }

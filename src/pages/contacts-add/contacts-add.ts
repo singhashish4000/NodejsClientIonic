@@ -65,7 +65,7 @@ export class ContactsAddPage {
 
 	private showProcessing(): void {
 		this.loading = this.loadingCtrl.create({
-			content: 'Proszę czekać...'
+			content: 'Please wait...'
 		});
 		this.loading.present();
 	}
@@ -74,11 +74,11 @@ export class ContactsAddPage {
 	}
 	private showError(message: string): void {
 		let alert = this.alertCtrl.create({
-			title: 'Błąd',
+			title: 'Error',
 			subTitle: message,
 			buttons: ['OK']
 		});
-		alert.present(prompt);
+		alert.present();
 	}
 
 }

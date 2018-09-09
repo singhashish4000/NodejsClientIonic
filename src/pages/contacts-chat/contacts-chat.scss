@@ -7,4 +7,24 @@ page-contacts-chat {
 	.owner {
 		background-color: yellow;
 	}
+	.card {
+		
+	}
+
+	#owner {
+		float:left;
+		width: 80%
+	}
+	#guest {
+		float:right;
+		width: 80%
+	}
+
+	.content {
+		margin-bottom: 100px;
+	}
+
+	.footer {
+		margin-top:100px;
+	}
 }
